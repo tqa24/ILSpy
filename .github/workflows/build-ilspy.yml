@@ -23,8 +23,13 @@ jobs:
       StagingDirectory: buildartifacts 
 
     steps:
+    - name: Update agent configuration to avoid running on C:\
+      shell: pwsh
+      run: |
+          "DOTNET_INSTALL_DIR=D:\tools\dotnet" >> ${env:GITHUB_ENV}
+          "DOTNET_ROOT=D:\tools\dotnet" >> ${env:GITHUB_ENV}
+
     - run: mkdir -p $env:StagingDirectory
-      
 
     - uses: actions/checkout@v5
       with:
