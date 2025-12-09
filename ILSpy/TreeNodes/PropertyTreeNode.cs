@@ -24,6 +24,7 @@ using ICSharpCode.Decompiler;
 
 namespace ICSharpCode.ILSpy.TreeNodes
 {
+	using ICSharpCode.Decompiler.Output;
 	using ICSharpCode.Decompiler.TypeSystem;
 	using ICSharpCode.ILSpyX;
 
@@ -60,7 +61,7 @@ namespace ICSharpCode.ILSpy.TreeNodes
 
 		public static object GetText(IProperty property, Language language)
 		{
-			return language.PropertyToString(property, false, false, false);
+			return language.EntityToString(property, ConversionFlags.None);
 		}
 
 		public override object Icon => GetIcon(GetPropertyDefinition());
@@ -104,7 +105,7 @@ namespace ICSharpCode.ILSpy.TreeNodes
 
 		public override string ToString()
 		{
-			return LanguageService.ILLanguage.PropertyToString(PropertyDefinition, false, false, false);
+			return LanguageService.ILLanguage.EntityToString(PropertyDefinition, ConversionFlags.None);
 		}
 	}
 }
